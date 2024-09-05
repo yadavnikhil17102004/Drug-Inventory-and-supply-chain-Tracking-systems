@@ -38,7 +38,7 @@ body {font-family: Arial, Helvetica, sans-serif;
 }
 
 /* /* Full-width input fields */
- input[type=text], input[type=password],input[type=date] {
+ input[type=text], input[type=password],input[type=date],input[type=file]{
   width: 80%;
   padding: 3px 5px;
   margin: 5px 0;
@@ -66,7 +66,7 @@ body {font-family: Arial, Helvetica, sans-serif;
 </head>
 
 <body>
-<br>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -82,8 +82,8 @@ body {font-family: Arial, Helvetica, sans-serif;
           <li><a href="ManufaturerLogin.html">Manufacturer</a></li>
           <li><a href="DistributorLogin.html">Distributor</a></li>
           <li><a href="PharmacyLogin.html">Pharmacy</a></li>
-          <li><a href="AdminLogin.html">Admin</a>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <li><a href="Admin.html">Admin</a>
+         <!--  <li><a href="contact.html">Contact</a></li> -->
          <!--  <li><a href="about.html">About</a></li>
           <li><a href="resume.html">Resume</a></li>
           <li><a href="services.html">Services</a></li>
@@ -103,29 +103,31 @@ body {font-family: Arial, Helvetica, sans-serif;
     </div>
 
   </header><!-- End Header -->
-
+<br><br>
   <!-- ======= Supplier Registration Section ======= -->
-  <section id="pharmacyreg" class="pharmacyreg">
+   <section id="userreg" class="userreg">
       <div class="container" data-aos="fade-up">
         <div class="row justify-content-center">
           <div class="col-lg-6">
            <div class="icon-box" align="center">
-        <div class="section-title"><br>        
-          <p>Supplier Login</p>
+        <div class="section-title"><br>    
+          <p>Patient Registration</p>
                   </div>  
-            <form action="PharmacyLoginCon" method="post">
+            <form action="PatientLCon" method="post">
                     
+              
               <div class="form-group mt-1">
               <input type="text" name="email" class="form-control custom-labels" title="" required="required" placeholder="Enter Email" />
               </div>
-              
+             
               <div class="form-group mt-1">
               <input type="password" name="password" class="form-control custom-labels" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." required="required"  placeholder="Password" />
               </div>
                           
               <div class="text-center">                     
          <input type="submit" value="Login"><br>
-         <a href="PharmacyReg.html" style="color:gold" >Not Register? Register here!!</a><br><br>
+          <a href="PatientRegistration.html" style="color:gold" >Not Register? Register here!!</a><br><br>
+        
               </div>              
             </form>
           </div>

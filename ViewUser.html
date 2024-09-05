@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.connection.DBConnection"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -33,40 +37,10 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-<style>
-body {font-family: Arial, Helvetica, sans-serif;
-}
-
-/* /* Full-width input fields */
- input[type=text], input[type=password],input[type=date] {
-  width: 80%;
-  padding: 3px 5px;
-  margin: 5px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-/*   box-sizing: border-box; */
-  border-radius:10px;
-} 
- input[type=button], input[type=submit], input[type=reset] {
- 
-	position:relative;
-    padding: 5px 22px;
-	border-radius:15px;
-	background-color:#008800;
-	align:center;	
-	color: white;
-	font-type:Bold;
-	text-decoration: none; 
-    font-size: 20px;
-    margin: 8px 4px;
-    cursor: pointer;
-} 
- 
-</style>
 </head>
 
 <body>
-<br>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -83,7 +57,7 @@ body {font-family: Arial, Helvetica, sans-serif;
           <li><a href="DistributorLogin.html">Distributor</a></li>
           <li><a href="PharmacyLogin.html">Pharmacy</a></li>
           <li><a href="AdminLogin.html">Admin</a>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <li><a href="contact.html">Contact</a></li>
          <!--  <li><a href="about.html">About</a></li>
           <li><a href="resume.html">Resume</a></li>
           <li><a href="services.html">Services</a></li>
@@ -104,38 +78,86 @@ body {font-family: Arial, Helvetica, sans-serif;
 
   </header><!-- End Header -->
 
-  <!-- ======= Supplier Registration Section ======= -->
-  <section id="pharmacyreg" class="pharmacyreg">
-      <div class="container" data-aos="fade-up">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-           <div class="icon-box" align="center">
-        <div class="section-title"><br>        
-          <p>Supplier Login</p>
-                  </div>  
-            <form action="PharmacyLoginCon" method="post">
-                    
-              <div class="form-group mt-1">
-              <input type="text" name="email" class="form-control custom-labels" title="" required="required" placeholder="Enter Email" />
-              </div>
-              
-              <div class="form-group mt-1">
-              <input type="password" name="password" class="form-control custom-labels" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." required="required"  placeholder="Password" />
-              </div>
-                          
-              <div class="text-center">                     
-         <input type="submit" value="Login"><br>
-         <a href="PharmacyReg.html" style="color:gold" >Not Register? Register here!!</a><br><br>
-              </div>              
-            </form>
-          </div>
-        </div>
-        </div>
-      </div>
-    </section>
+<!------------------------------------------------------------------------------>
 
- <!-- =======End Supplier Registration Section ======= -->
- 
+<section id="contact">
+			<div class="container"> 
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-lg-12">
+							<div class="text-center color-elements">
+								<br><br><br>
+							<h2><b>View Users Data</b></h2>
+						<br><br>
+							</div>
+						</div>
+						<div class="col-sm-offset-2 col-lg-6 ">
+						 <form class="subscription-form">
+                    <div style="margin-left:20px;margin-right:20px">
+                    <table class="table table-bordered" style="color:black">
+                    <!-- <tr  class="danger" style="color:black">
+                     <th >Profile Pic</th>
+                    <th > Name   </th>
+                     <th>Address</th>
+                     <th>Email</th>
+                     <th>Mobile No</th>
+                     <th>DOB</th>
+                     <th>Status</th>
+                     <th>Action</th>
+                     </tr>-->
+                     <%
+                     Connection con=DBConnection.getConnection();
+                     Statement st=con.createStatement();
+                     ResultSet rs=st.executeQuery("select * from patient");
+                     //while(rs.next())
+                     if(rs.next() == false) {
+                    	%>
+                    	<h4 style="text-align:right;margin-right:70px"><b>No Users Present</b></h4>
+                    	<%
+                     }
+                    else{
+                    	int count=0;
+                    	do{	 
+                    	 if(count == 0) {	
+                    	 %>
+                    	 <tr  class="danger" style="color:black">
+		                     <th >Profile Picture</th>
+		                  <!--  <th>image name</th> -->
+		                    <th > Name   </th>
+		                     <th>Address</th>
+		                     <th>Email</th>
+		                     <th>Mobile No</th>
+		                     <th>DOB</th>
+		                     <th>password</th>
+		                     <th>Status</th>
+		                    <!--  <th>Action</th> -->
+		                  </tr>
+		                  <%}%>
+                    	 <TR>
+                    	<td><img alt="Profile Pic" class="img-circle" src="Profilepic.html?id=<%=rs.getInt(1) %>"  width="100px" height="80px"/></td>
+                    	<%--  <td style="color:black"><%=rs.getString(2) %></td> --%>
+                    	<%--  <td style="color:black"><%=rs.getString(3) %></td> --%>
+                    	 <td style="color:black"><%=rs.getString(4) %></td>
+                    	 <td style="color:black"><%=rs.getString(5) %></td>
+                    	 <td style="color:black"><%=rs.getString(6) %></td>
+                    	 <td style="color:black"><%=rs.getString(7) %></td>
+                    	 <td style="color:black"><%=rs.getString(8) %></td>
+                    	 <td style="color:black"><%=rs.getString(9) %></td>
+          
+                    	<%-- <th><a href="UserStatusController?id=<%=rs.getInt(1)%>&status=<%=rs.getString(9)%>"><%=rs.getString(9)%></a></th> --%>
+                    	 <td><a href="DeleteCon?id=<%=rs.getInt(1)%>"><b>Delete</b></a></td>
+                    	 </TR>                    	 
+                    <%count++; }while(rs.next());}%> 
+                   
+                    </table>     
+                  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+<!------------------------------------------------------------------------------>
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
